@@ -23,6 +23,7 @@ class Fireball(BaseSpell):
         super().__init__()
         self.name = "Fireball"
         self.id = 2
+        self.magic_cost = 2
         self.damage_type = "FIRE"
         self.damage = "2d8"
 
@@ -31,6 +32,7 @@ class SmallHeal(BaseSpell):
         super().__init__()
         self.name = "Small Heal"
         self.id = 3
+        self.magic_cost = 3
         self.healing = True
         self.damage = "1d12"
 

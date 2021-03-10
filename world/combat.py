@@ -103,14 +103,14 @@ class CmdAttack(default_cmds.MuxCommand):
             if damage == 0: # it clanged off of their armor kind of thing
                 if target.db.armor > 0 and random.choice([True,True,False]): # 33% chance to do the other no damage message
                     self.caller.msg(f"You hit {target.key} with your {weapon_name}, but it bounces away harmlessly.")
-                    target.msg(f"{self.caller.key} hits you with their {weapon_name}, but it bounces away harmlessly.")
+                    target.msg(f"{self.caller.key} hits you with {self.caller.db.gender.thier} {weapon_name}, but it bounces away harmlessly.")
                 else: # just rolled bad or 1/3 chance if armor deflected
                     self.caller.msg(f"You hit {target.key} with your {weapon_name}, but your pitiful attack deals no damage.")
-                    target.msg(f"{self.caller.key}'s pitiful attack with their' {weapon_name} deals no damage")
+                    target.msg(f"{self.caller.key}'s pitiful attack with {self.caller.db.gender.thier}' {weapon_name} deals no damage")
 
             else: # there was damage
                 self.caller.msg(f"You hit {target.key} with your {weapon_name}, dealing {damage_string} damage!") 
-                target.msg(f"{self.caller.key} hit you with their {weapon_name} for {damage_string} damage!")
+                target.msg(f"{self.caller.key} hit you with {self.caller.db.gender.thier} {weapon_name} for {damage_string} damage!")
 
         else: # miss
             self.caller.msg(f"You miss {target.key}") 

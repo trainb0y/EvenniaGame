@@ -215,7 +215,7 @@ class CmdStats(default_cmds.MuxCommand):
             return
 
         text = f"\n\n|gStatistics of {target.key}:|n\n"
-        text += f"Race: {target.db.race.name}, {target.db.gender}\n"
+        text += f"Race: {target.db.race.name}, {target.db.gender.name.title()}\n"
         text += f"Class: {target.db.pclass.name}\n"
         text += f"Level: {target.db.level}, Xp: {target.db.xp}\n"
         text += f"Gold: |y{target.db.gold}|n\n"

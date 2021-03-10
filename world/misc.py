@@ -26,4 +26,15 @@ def roll(string):
     
     return total
 
-
+class gender():
+    """ A class that I can reference caller.db.gender.they to get
+    the appropriate version of he/she"""
+    def __init__(self,name,they,them,their):
+        self.name = name
+        self.they = they
+        self.them = them
+        self.thier = their
+        
+male = gender("male","he","him","his")
+female = gender("female","she","her","hers")
+other = gender("other","they","them","their")

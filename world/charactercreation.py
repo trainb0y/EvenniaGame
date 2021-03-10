@@ -1,5 +1,6 @@
 from evennia.utils import evmenu, evtable
-from world import playerraces, playerclasses
+from evennia.utils.search import search_object
+from world import playerraces, playerclasses, misc
 
 
 
@@ -129,9 +130,9 @@ def menunode_inspect_and_select_class(caller, raw_string):
 def menunode_select_gender(caller, raw_string):
     text = "*** Choose a gender ***"
 
-    def select_gender_male(caller): caller.db.gender = "Male"
-    def select_gender_female(caller): caller.db.gender = "Female"
-    def select_gender_other(caller): caller.db.gender = "Other"
+    def select_gender_male(caller): caller.db.gender = misc.male
+    def select_gender_female(caller): caller.db.gender = misc.female
+    def select_gender_other(caller): caller.db.gender = misc.other
 
     options = ({"desc": "Male",
                 "goto": "menunode_exit",
@@ -150,7 +151,7 @@ def menunode_exit(caller, raw_string):
     # Finish character setup
     caller.setup()
     #  Needs to teleport user out of Limbo, and into the world
-    caller.move_to(4)
+    caller.move_to(search_object("#4")[0]) # not the best way to find cellar -_-
     
     return None, None # No options, ends menu
 
@@ -170,6 +171,6 @@ class CmdCharacterSetup(Command):
     def func(self):
         "Starts the shop EvMenu instance"
         evmenu.EvMenu(self.caller,
-                      "typeclasses.charactercreation",
+                      "world.charactercreation",
                       startnode="menunode_racelist")
 
